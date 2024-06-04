@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ConviSport</title>
+    <link rel="stylesheet" type="text/css" href="../css/basketball.css">
+</head>
+<body>        
+
+    <header>
+        <div id="logo">
+            <img src="../image/legoSponso.png" alt="Logo" 
+            width="100"
+            height="100">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#">Services</a></li> 
+                <li><a href="sections.html">Sections</a></li>
+                <li><a href="#">A propos</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <!-- Ajoutez plus de pages si nécessaire -->
+            </ul>
+        </nav>
+    </header>
+    
+    <section>
+        <h1 class="titre">Vous voulez faire un basket et vous cherchez des gens? <br>Vous êtes au bon endroit.</h1><br><br>
+        <div class="create">
+            <h2>Créer une session </h2>
+            <form action="create.php" method="post">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
+                <label for="time">Heure:</label>
+                <input type="time" id="time" name="time" required><br><br>
+                <label for="location">Lieu:</label>
+                <select id="location" name="location" required><br><br>
+                    <option value="">--Choisissez une salle--</option>
+                    <option value="hoopsFactoryLille">Hoops Factory Lille</option>
+                    <option value="hoopsFactoryRoubaix">Hoops Factory Roubaix</option>
+                    <option value="hoopsFactoryParis">Hoops Factory Paris</option>
+                    <option value="hoopsFactoryNantes">Hoops Factory Nantes</option>
+                    <option value="hoopsFactoryLyon">Hoops Factory Lyon</option>
+                    <option value="hoopsFactoryToulouse">Hoops Factory Toulouse</option>
+                    <option value="hoopsFactoryBordeaux">Hoops Factory Bordeaux</option>
+                    <option value="hoopsFactoryMontpellier">Hoops Factory Montpellier</option>
+                    <option value="hoopsFactoryMarseille">Hoops Factory Marseille</option>
+                    <option value="hoopsFactoryNice">Hoops Factory Nice</option>
+                    <!-- Ajoutez plus d'options si nécessaire -->
+                </select><br><br>
+                <label for="nbPlayers">Nombre de joueurs:</label>
+                <input type="number" id="nbPlayers" name="nbPlayers" required><br><br>
+                <label for="Message" >Message</label>
+                <input type="text" id="Annonce" name="Message" required>
+                <input type="submit" value="Créer">
+            </form>
+    </section>
+    <h1></h1>
+</body>

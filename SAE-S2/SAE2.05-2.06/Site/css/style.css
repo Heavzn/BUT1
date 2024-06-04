@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+#logo {
+    margin-left: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin-right: 10px;
+    font-style: italic;
+    font-size: 1rem;
+    border: 10%;
+    border-style: solid;
+    padding: 25px;
+    border-color: orange;
+    border-radius: 100px;
+    filter: opacity(100%);
+    border: ;
+}
+nav ul li{
+    size: 120%;
+}
+#map{
+    margin-top: 900px;
+}
+
+
+nav ul li {
+    display: inline;
+    margin-left: 10px;;
+}
