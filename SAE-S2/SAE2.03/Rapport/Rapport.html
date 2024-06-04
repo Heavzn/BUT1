@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Mathis Magnier mathis.magnier.etu@univ-lille.fr" />
+  <meta name="author" content="Aymane Benafquir aymane.benfaquir.etu@univ-lille.fr" />
+  <meta name="author" content="Milan Theron milan.theron.etu@univ-lille.fr" />
+  <title>Rapport - Projet Réseaux</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rapport - Projet Réseaux</h1>
+<p class="author">Mathis Magnier <a
+href="mailto:mathis.magnier.etu@univ-lille.fr"
+class="email">mathis.magnier.etu@univ-lille.fr</a></p>
+<p class="author">Aymane Benafquir <a
+href="mailto:aymane.benfaquir.etu@univ-lille.fr"
+class="email">aymane.benfaquir.etu@univ-lille.fr</a></p>
+<p class="author">Milan Theron <a
+href="mailto:milan.theron.etu@univ-lille.fr"
+class="email">milan.theron.etu@univ-lille.fr</a></p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#résumé"><span class="toc-section-number">1</span>
+Résumé</a></li>
+<li><a href="#création-dune-machine-virtuelle"><span
+class="toc-section-number">2</span> Création d’une machine virtuelle</a>
+<ul>
+<li><a
+href="#création-de-la-vm-virtual-machine-à-laide-de-virtualbox"><span
+class="toc-section-number">2.1</span> Création de la VM (virtual
+machine) à l’aide de VirtualBox</a></li>
+<li><a href="#installation-de-los"><span
+class="toc-section-number">2.2</span> Installation de l’OS</a>
+<ul>
+<li><a href="#question-que-vous-pourriez-vous-poser"><span
+class="toc-section-number">2.2.1</span> Question que vous pourriez vous
+poser ?</a></li>
+</ul></li>
+<li><a href="#préparation-du-système"><span
+class="toc-section-number">2.3</span> Préparation du système</a></li>
+<li><a href="#suppléments-invités"><span
+class="toc-section-number">2.4</span> Suppléments invités</a>
+<ul>
+<li><a href="#question-3">Question 3</a></li>
+<li><a href="#question-4">Question 4</a></li>
+</ul></li>
+<li><a href="#apprentissage-du-markdown"><span
+class="toc-section-number">2.5</span> Apprentissage du markdown</a></li>
+</ul></li>
+<li><a href="#ceci-est-un-titre-de-niveau-1">ceci est un titre de niveau
+1</a>
+<ul>
+<li><a href="#ceci-est-un-titre-de-niveau-2">ceci est un titre de niveau
+2</a>
+<ul>
+<li><a href="#ceci-est-un-titre-de-niveau-3">ceci est un titre de niveau
+3</a></li>
+</ul></li>
+<li><a href="#exportation-avec-pandoc"><span
+class="toc-section-number">2.6</span> Exportation avec Pandoc</a></li>
+</ul></li>
+<li><a href="#études-dapplications-clientes"><span
+class="toc-section-number">3</span> Études d’applications clientes</a>
+<ul>
+<li><a href="#configuration-de-git"><span
+class="toc-section-number">3.1</span> Configuration de Git</a>
+<ul>
+<li><a href="#questions">Questions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#installation-du-service-gitea"><span
+class="toc-section-number">4</span> Installation du service Gitea</a>
+<ul>
+<li><a href="#quest-ce-que-gitea"><span
+class="toc-section-number">4.1</span> Qu’est ce que Gitea?</a></li>
+<li><a
+href="#à-quels-logiciels-bien-connus-dans-ce-domaine-peut-on-le-comparer"><span
+class="toc-section-number">4.2</span> À quels logiciels bien connus dans
+ce domaine peut-on le comparer ?</a></li>
+<li><a href="#installation-de-gitea"><span
+class="toc-section-number">4.3</span> Installation de Gitea</a>
+<ul>
+<li><a href="#installation-du-binaire"><span
+class="toc-section-number">4.3.1</span> Installation du binaire</a></li>
+<li><a href="#création-du-fichbier-de-configuration-gitea"><span
+class="toc-section-number">4.3.2</span> Création du fichbier de
+configuration Gitea</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#les-problème-rencontrés"><span
+class="toc-section-number">5</span> Les problème rencontrés</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span>
+Conclusion</a></li>
+</ul>
+</nav>
+<h1 data-number="1" id="résumé"><span
+class="header-section-number">1</span> Résumé</h1>
+<p>Nous avons entamé la SAÉ 2.03 avec pour objectif l’automatisation de
+l’installation d’une machine virtuelle VirtualBox et l’apprentissage du
+langage Markdown ou AsciiDoc, en mettant en place un système
+d’exploitation Debian avec un environnement graphique MATE. La première
+semaine a été consacrée à la configuration matérielle dans VirtualBox,
+l’installation de l’OS, la préparation du système, et l’automatisation
+de cette installation. La deuxième à plutôt était orienté vers
+l’apprentissage du langage Markdown et l’utilisation de Pandoc. Et la
+troisième nous a servi à étudier des applications clientes comme avec
+l’exemple de Git.</p>
+<h1 data-number="2" id="création-dune-machine-virtuelle"><span
+class="header-section-number">2</span> Création d’une machine
+virtuelle</h1>
+<h2 data-number="2.1"
+id="création-de-la-vm-virtual-machine-à-laide-de-virtualbox"><span
+class="header-section-number">2.1</span> Création de la VM (virtual
+machine) à l’aide de VirtualBox</h2>
+<p>La configuration matérielle a commencé par la création d’une nouvelle
+machine virtuelle. Nous avons défini le nom de la machine (“serveur”),
+laissé le domaine vide, choisi le pays/langue (France), et configuré le
+miroir Debian (http://debian.polytech-lille.fr). Nous avons opté pour
+une seule partition de la taille du disque et sélectionné les logiciels
+de démarrage tels que l’environnement de bureau Debian MATE, un serveur
+web, un serveur SSH, et les utilitaires usuels du système.</p>
+<figure>
+<img src="./images/VM_Screen.png" style="width:50.0%"
+alt="L’image est introuvable" />
+<figcaption aria-hidden="true">L’image est introuvable</figcaption>
+</figure>
+<h2 data-number="2.2" id="installation-de-los"><span
+class="header-section-number">2.2</span> Installation de l’OS</h2>
+<p>L’installation de l’OS a impliqué la récupération d’une ISO bootable
+<em>(futur lien vers la définition d’iso bootable)</em> de Debian 11 ou
+12 (Debian 64-bit) depuis le site officiel de Debian
+(https://www.debian.org/index.fr.html). Nous avons choisi une
+installation automatisée pour simplifier le processus.</p>
+<p>Les caractéristiques de la machine virtuelle ont été configurées dans
+un fichier nommé <strong><em>preseed-fr.cfg</em></strong>, et une fois
+l’installation terminée, l’ISO d’installation a été retirée. Voici à
+quoi ressemble l’intérieur du fichier de configuration automatique :</p>
+<p><a href=""><img src="./images/preseed-fr.png"
+alt="L’image est introuvable" /></a></p>
+<p>Comme vous pouvez le voir, nous avons apporté quelques modifications
+au fichier d’origine afin d’installer certain <strong>paquets</strong>
+par défaut sur la machine (sur la ligne <strong>68</strong>) notamment
+sqlite3, sudo neofetch ou encore Git. Et pour le plaisir visuel à la fin
+de <strong>la ligne 85</strong> Dans le fichier preseed il nous faut
+rajouter “<strong>, mate-desktop</strong>” pour rajouter l’interface
+graphique Mate.</p>
+<h3 data-number="2.2.1" id="question-que-vous-pourriez-vous-poser"><span
+class="header-section-number">2.2.1</span> Question que vous pourriez
+vous poser ?</h3>
+<ul>
+<li><p><strong>Que signifie “64-bit” dans “Debian
+64-bit”?</strong></p></li>
+<li><p>Une architecture de 64 bits peut traiter des données par blocs de
+64 bits à la fois, ce qui lui permet d’offrir beaucoup plus de mémoire
+qu’un système de 32 bits. Un système de 64 bits peut théoriquement
+traiter jusqu’à 18,4 millions de téraoctets (To) de mémoire.
+(https://wiki.debian.org/fr/DebianInstall) Sur ce site, il y est
+expliqué ce qui est dit plus tôt, mais qu’il faut également un
+processeur capable de traiter des blocs de 64 bits à la fois pour que ce
+soit optimal.</p></li>
+<li><p><strong>Quelle est la configuration réseau utilisé par défaut par
+la machine?</strong></p></li>
+<li><p>La configuration réseau par défaut dans VirtualBox est souvent un
+adaptateur NAT.</p></li>
+<li><p><strong>Quel est le nom du fichier XML contenant la configuration
+de la machine?</strong></p></li>
+<li><p>Le nom du fichier XML est sae203.vbox</p></li>
+</ul>
+<p><a href=""><img src="./images/Dossier_VM2.png"
+alt="L’image est introuvable" /></a></p>
+<p>Afin de trouver le <strong>fichier XML</strong> il suffit de se
+rendre dans le dossier où l’on à créé la machine virtuelle et de trouver
+le fichier de type <strong>XML</strong></p>
+<ul>
+<li><strong>Sauriez-vous le modifier directement pour mettre 2
+processeurs à votre machine?</strong></li>
+<li>Oui, le fichier XML peut être modifié en ajoutant/modifiant
+l’élément <code>&lt;vcpu&gt;</code> pour spécifier le nombre de
+processeurs.</li>
+</ul>
+<p><a href=""><img src="./images/2cpu.png"
+alt="L’image est introuvable" /></a></p>
+<ul>
+<li><p><strong>Qu’est-ce qu’un fichier iso bootable?</strong></p></li>
+<li><p>Un fichier ISO Bootable est conçu pour s’exécuter lorsque vous
+démarrez votre PC, il permet entre autres de démarrer votre ordinateur
+sans même qu’il y ait de système d’exploitation puisqu’il est bootable.
+Un fichier Iso est la copie conforme d’un disque optique, car il
+conserve une certaine structure comme sur un disque physique comme le
+dit le site Wikipedia
+(https://fr.wikipedia.org/wiki/Image_disque)</p></li>
+<li><p><strong>Qu’est-ce qu’un serveur web?</strong></p></li>
+<li><p>Un serveur web est un logiciel qui répond aux requêtes HTTP,
+permettant d’afficher des pages web sur un navigateur.</p></li>
+</ul>
+<h2 data-number="2.3" id="préparation-du-système"><span
+class="header-section-number">2.3</span> Préparation du système</h2>
+<p>La préparation du système a consisté à accorder l’accès sudo à
+l’utilisateur standard (l’accès sudo est l’équivalent du rôle
+administrateur de la machine). Les étapes incluaient le passage en mode
+console, la connexion en tant que root et l’ajout du groupe sudo à
+l’utilisateur principal.</p>
+<p>Voici la page officiel debian qui documente <strong><a
+href="https://wiki.debian.org/sudo/">Sudo</a></strong>.</p>
+<p>Voici comment faire pour donner les droits Sudo à un utilisateur à
+partir d’un terminal : Tout d’abord, il faut ouvrir un terminal en mode
+Administrateur puis taper cette commande :<br />
+<strong><em><code>usermod -aG sudo utilisateur</code></em></strong></p>
+<p><a href=""><img src="./images/sudo.png"
+alt="L’image est introuvable" /></a></p>
+<p>et dans le <strong>fichier automatique</strong> de la VM</p>
+<p><a href=""><img src="./images/config.png"
+alt="L’image est introuvable" /></a></p>
+<h2 data-number="2.4" id="suppléments-invités"><span
+class="header-section-number">2.4</span> Suppléments invités</h2>
+<p>Pour améliorer l’intégration, les suppléments invités ont été
+installés, impliquant le montage du CD des suppléments et l’exécution de
+l’installation. La version du noyau Linux utilisé par la VM a été
+vérifiée.</p>
+<h3 class="unnumbered" id="question-3">Question 3</h3>
+<ul>
+<li><strong>Comment peut-on savoir à quels groupes appartient
+l’utilisateur user?</strong></li>
+<li><em>Réponse:</em> La commande <code>groups user</code> permet de
+connaître les groupes auxquels appartient l’utilisateur user dans cet
+exemple.</li>
+</ul>
+<h3 class="unnumbered" id="question-4">Question 4</h3>
+<ul>
+<li><p><strong>Quelle est la version du noyau Linux utilisé par votre
+VM?</strong></p></li>
+<li><p>Utiliser la commande <code>uname -r</code> pour obtenir la
+version du noyau.</p></li>
+<li><p><strong>À quoi servent les suppléments invités?</strong></p></li>
+<li><p>Les suppléments invités améliorent l’intégration entre la machine
+hôte et virtuelle, fournissant des fonctionnalités comme le
+redimensionnement automatique de la fenêtre.</p></li>
+<li><p><strong>À quoi sert la commande mount (dans notre cas de figure
+et dans le cas général)?</strong></p></li>
+<li><p>Dans notre cas, elle sert à monter le CD des suppléments invités.
+En général, la commande <code>mount</code> est utilisée pour attacher un
+système de fichiers à l’arborescence.</p></li>
+</ul>
+<p>[1] # Markdown</p>
+<h2 data-number="2.5" id="apprentissage-du-markdown"><span
+class="header-section-number">2.5</span> Apprentissage du markdown</h2>
+<p><br />
+Pour commencer, comme aucun de nous n’avais jamais fait de Markdown nous
+somme allé sur un éditeur en ligne nommé <strong><a
+href="https://dillinger.io">Dillinger</a></strong> afin de découvrir les
+balises de base à connaître. En effet, le langage Markdown est un
+langage à balisage léger, il faut donc utiliser des balise afin
+d’apporter du traitement au texte.</p>
+<p>Voici un tableau reprenant toute les balises de base du Markdown</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Traitement</th>
+<th>balise</th>
+<th>exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mettre en italique</td>
+<td>* *</td>
+<td><em>ceci est un texte en italique</em></td>
+</tr>
+<tr class="even">
+<td>mettre en gras</td>
+<td>** **</td>
+<td><strong>ceci est un texte en gras</strong></td>
+</tr>
+<tr class="odd">
+<td>mettre en italique + en gras</td>
+<td>*** ***</td>
+<td><strong><em>ceci est un texte en italique + gras</em></strong></td>
+</tr>
+<tr class="even">
+<td>surligner</td>
+<td>== ==</td>
+<td>==ceci est un texte surligné==</td>
+</tr>
+<tr class="odd">
+<td>Titre de niveau 1</td>
+<td>#</td>
+<td>les exemple pour les titres seront en dessous car ils ne
+fonctionnent pas en tableau</td>
+</tr>
+<tr class="even">
+<td>Titre de niveau 2</td>
+<td>##</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Titre de niveau 3</td>
+<td>###</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Titre de niveau 4</td>
+<td>####</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Titre de niveau 5</td>
+<td>#####</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Titre de niveau 6</td>
+<td>######</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>mettre un lien</td>
+<td><a href="lien">texte</a></td>
+<td><a href="https://exemple.com">exemple</a></td>
+</tr>
+<tr class="even">
+<td>mettre une image</td>
+<td><a href=""><img src="chemin" alt="alt" /></a></td>
+<td><a href=""><img src="./images/exemple.png" alt="exemple" /></a></td>
+</tr>
+<tr class="odd">
+<td>faire une liste</td>
+<td>-</td>
+<td>-exemple1</td>
+</tr>
+</tbody>
+</table>
+<h1 class="unnumbered" id="ceci-est-un-titre-de-niveau-1">ceci est un
+titre de niveau 1</h1>
+<h2 class="unnumbered" id="ceci-est-un-titre-de-niveau-2">ceci est un
+titre de niveau 2</h2>
+<h3 class="unnumbered" id="ceci-est-un-titre-de-niveau-3">ceci est un
+titre de niveau 3</h3>
+<h4 class="unnumbered" id="ceci-est-un-titre-de-niveau-4">ceci est un
+titre de niveau 4</h4>
+<h5 class="unnumbered" id="ceci-est-un-titre-de-niveau-5">ceci est un
+titre de niveau 5</h5>
+<h6 class="unnumbered" id="ceci-est-un-titre-de-niveau-6">ceci est un
+titre de niveau 6</h6>
+<h2 data-number="2.6" id="exportation-avec-pandoc"><span
+class="header-section-number">2.6</span> Exportation avec Pandoc</h2>
+<p>Pour exporter tout fichier vers un autre format avec l’application
+Pandoc, il suffit de rentrer la ligne de commande suivant dans un
+terminal dans le dossier qui contient le fichier en Markdown :<br />
+<code>pandoc Titre.md -o Titre. Nouvelle_extension</code></p>
+<p>La commande que nous avons utilisé nous pour exporter ce fichier
+markdown en pdf est celle ci-dessous :<br />
+</p>
+<p><code>pandoc -f markdown -t pdf -N -s Rapport.md metadata.yaml -o Rapport.pdf  --toc -V geometry:margin=1in</code></p>
+<p>les options:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 29%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Options</th>
+<th>correspondance</th>
+<th>Utilité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-f</td>
+<td>from</td>
+<td>permet de signifier le type du fichier de départ</td>
+</tr>
+<tr class="even">
+<td>-t</td>
+<td>to</td>
+<td>permet de signifier dans quel type nous souhaitons le fichier de
+sortie</td>
+</tr>
+<tr class="odd">
+<td>-N</td>
+<td>Number</td>
+<td>permet de numéroter chaque partie du rapport pour différencier les
+points des autres</td>
+</tr>
+<tr class="even">
+<td>-s</td>
+<td>standalone</td>
+<td>Permet, si il y a des images ou des metadonnées au fichier de tout
+transporter en lui toute les images et metadonnés</td>
+</tr>
+<tr class="odd">
+<td>-o</td>
+<td>output</td>
+<td>permet de choisir le nom que le fichier transformé portera</td>
+</tr>
+<tr class="even">
+<td>–toc</td>
+<td>table of content</td>
+<td>permet de créer automatiquement un sommaire pour le fichier lors de
+la conversion</td>
+</tr>
+<tr class="odd">
+<td>-V</td>
+<td></td>
+<td>Permet d’ajouter des modification sur l’affichage, dans notre cas il
+permet de resuire les marge de chaque coté du fichier pdf</td>
+</tr>
+</tbody>
+</table>
+<p>Biensur il existe bien d’autre option que vous pouvez utilisez avec
+pandoc que vous pouvez retrouver directement sur le manuel de pandoc
+ci-joint <a href="https://pandoc.org/MANUAL.html">Manuel pandoc <img
+src="./images/logo_pandoc.png" width="30" alt="logo_pandoc" /></a></p>
+<h1 data-number="3" id="études-dapplications-clientes"><span
+class="header-section-number">3</span> Études d’applications
+clientes</h1>
+<h2 data-number="3.1" id="configuration-de-git"><span
+class="header-section-number">3.1</span> Configuration de Git</h2>
+<p>Maintenant que l’on a tout les packets d’installer nous pouvons
+configurer Git.<br />
+Tout d’abords, nous allons configurer le git à notre nom, mail, branche
+par défaut.</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 37%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Configurer le nom</th>
+<th>Configurer l’email</th>
+<th>Configurer la branche par defaut</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>git config –global user.name “Prénom Nom”</td>
+<td>git config –global user.email “votre@email”</td>
+<td>git config –global init.defaultBranch “master”</td>
+</tr>
+</tbody>
+</table>
+<h3 class="unnumbered" id="questions">Questions</h3>
+<p><strong>Qu’est-ce que le logiciel gitk ? Comment se lance-t-il
+?</strong> - Effectuer la commande “sudo apt install gitk” dans le
+terminal - Gitk est un outil graphique intégré à Git qui offre une vue
+historique interactive des changements dans un dépôt, permettant la
+visualisation des branches, des commits et des différences entre les
+versions. Il s’utilise généralement en ligne de commande avec la
+commande “gitk”.</p>
+<p>Voici sa documentation <strong><a
+href="https://git-scm.com/docs/gitk/">Gitk</a></strong>.</p>
+<p><strong>Qu’est-ce que le logiciel git-gui ? Comment se lance-t-il
+?</strong> - Effectuer la commande “sudo apt-get install git-gui” dans
+le terminal - Git-GUI est une interface graphique pour Git, facilitant
+les opérations de contrôle de version via une interface utilisateur
+visuelle. Elle permet de créer des dépôts, gérer des branches, effectuer
+des commits, etc.</p>
+<p><strong>Comparons avec une autre interface</strong></p>
+<p>Nous devions d’abord aller sur le site <a
+href="https://git-scm.com/download/gui/linux">git-scm.com</a> puis
+choisir une interface pour comparer avec git-gui ou gitk.<br />
+<br />
+Pour notre part, nous avons choisi “ungit”, car celui-ci est simple
+d’utilisation et ergonomique. L’installation se fait en suivant ces
+commandes: - sudo apt install npm - npm install -g ungit</p>
+<p>Ensuite, vous pouvez lancer ungit avec un simple “ungit” dans votre
+terminal.</p>
+<p>Vous aurez une interface comme montrer ci-dessous</p>
+<p><a href=""><img src="./images/Exemple_ungit.png"
+alt="L’image est introuvable" /></a></p>
+<h4 data-number="3.1.0.1"
+id="comparaison-de-git-gui-et-gitk-à-ungit"><span
+class="header-section-number">3.1.0.1</span> Comparaison de git-gui et
+gitk à ungit</h4>
+<pre><code>gitk et git-gui :
+    Type : Outils graphiques intégrés à Git.
+    Utilité : gitk pour visualiser l&#39;historique des commits, git gui pour
+    des opérations administratives.
+    Lancement : Depuis la ligne de commande avec gitk ou git gui.
+
+
+ungit :
+    Type : Interface graphique tierce.
+    Utilité : Alternative visuellement agréable à Git, gestion intuitive.
+    Lancement : Application externe, installation séparée.</code></pre>
+<h1 data-number="4" id="installation-du-service-gitea"><span
+class="header-section-number">4</span> Installation du service
+Gitea</h1>
+<p>Premièrement, nous avons changé la direction de port de notre VM afin
+que le port de la machine hôte soit le même que celui de la VM. Cela a
+été fait dans le but d’utiliser gitea sans utiliser le terminal de la
+VM, mais en étant sur internet grâce au lien
+<code>http://localhost:300</code> sur la machine hôte.</p>
+<p>Tous les détails se trouvent ici : <a
+href="https://www.virtualbox.org/manual/UserManual.html#networkingdetails">Manuel
+VirtualBox</a>``````</p>
+<p><a href=""><img src="./images/redirectionport.png"
+alt="L’image est introuvable" /></a></p>
+<h2 data-number="4.1" id="quest-ce-que-gitea"><span
+class="header-section-number">4.1</span> Qu’est ce que Gitea?</h2>
+<p>Gitea est un “forge software” permettant d’héberger des différents
+codes source. C’est le même principe que GitHub sauf qu’il a des atouts
+qui sont: - Il n’est pas basé sur le cloud, permettant donc aux
+entreprises ou aux utilisateurs d’avoir plus de contrôles sur leurs
+dépôts et leurs données. - Gestion des droits des utilisateurs</p>
+<p>Voici sa documentation: <a href="https://docs.gitea.io">doc
+Gitea</a></p>
+<h2 data-number="4.2"
+id="à-quels-logiciels-bien-connus-dans-ce-domaine-peut-on-le-comparer"><span
+class="header-section-number">4.2</span> À quels logiciels bien connus
+dans ce domaine peut-on le comparer ?</h2>
+<p>On pourrait comparer le logiciel Gitea à GitHub, GitLab et Bitbucket,
+car ils offrent des fonctionnalités similaires telles que le suivi des
+problèmes, la gestion des versions, la collaboration et le contrôle
+d’accès.</p>
+<h2 data-number="4.3" id="installation-de-gitea"><span
+class="header-section-number">4.3</span> Installation de Gitea</h2>
+<p>Passons à l’installation de Gitea sur la VM avec sqlite3 qui était
+préalablement installé. Nous nous sommes tout d’abord assuré que les
+paquets étaient à jour sur le serveur en utilisant les commandes apt
+update et apt upgrade.</p>
+<p>Ensuite, il fallait créer un utilisateur système en utilisant cette
+commande: - <code>adduser \</code> C’est la commande principale pour
+ajouter un nouvel utilisateur sur Linux.</p>
+<ul>
+<li><p><code>--system \ --</code> Cette option crée un utilisateur
+système plutôt qu’un utilisateur ordinaire.</p></li>
+<li><p><code>--shell /bin/bash \ --</code> Permet de définir le shell
+par défaut comme bash</p></li>
+<li><p><code>--gecos 'Gitea Version Control' \ --</code> Description de
+l’utilisateur.</p></li>
+<li><p><code>--group \ --"</code> Crée un groupe du même nom que
+l’utilisateur, ici “git”</p></li>
+<li><p><code>--disabled-password \ --</code> Pas de mot de passe pour
+l’utilisateur.</p></li>
+<li><p><code>--home /home/git \ --</code> Définit le répertoire
+personnel de l’utilisateur.</p></li>
+<li><p><code>git --</code> Le nom de l’utilisateur crée.</p></li>
+</ul>
+<h3 data-number="4.3.1" id="installation-du-binaire"><span
+class="header-section-number">4.3.1</span> Installation du binaire</h3>
+<p>Puis il a fallu installer le binaire depuis le site Gitea. On pouvait
+l’installer directement depuis le site ou bien en ligne de commandes.
+Nous avons privilégié directement depuis le terminal avec cette commande
+pour le mettre dans le répertoire <code>/usr/local/bin</code>:<br />
+<code>wget https://dl.gitea.com/gitea/1.21.7/gitea-1.21.7-linux-amd64 -O ==/usr/local/bin/gitea==</code></p>
+<p>A la suite, nous avons collé cette suite de commandes dans le
+terminal: - <code>mkdir -p /var/lib/gitea/{custom,data,log} --</code>
+Crée un repertoire principal <code>'var/lib/gitea'</code> ainsi que
+trois sous-repertoires {custom,data,log} pour stocker des fichiers de
+configuration, des données de l’applications et des fichiers de grande
+taille.</p>
+<ul>
+<li><p><code>chown -R git:git /var/lib/gitea/ --</code> Change le
+propriétaire et le groupe du répertoire et de tous ses sous-répertoires
+et fichiers pour l’utilisateur et le groupe “git” pour que Gitea puisse
+accéder et modifier ces fichiers.</p></li>
+<li><p><code>chmod -R 750 /var/lib/gitea/ --</code> cette commande
+définie les permissions sur le répertoire et ses sous-répertoires afin
+que l’utilisateur propriétaire puisse lire, écrire et exécuter. Les
+autres utilisateurs n’ont aucun droit.</p></li>
+<li><p><code>mkdir /etc/gitea --</code> Crée un répertoire pour stocker
+les fichiers de configurations de Gitea.</p></li>
+<li><p><code>chown root:git /etc/gitea --</code> Change le propriétaire
+du répertoire à root et au groupe git.</p></li>
+<li><p><code>chmod 770 /etc/gitea --</code> Donne les droits du
+propriétaire (root) d’exécuter, écrire et exécuter.</p></li>
+</ul>
+<p>Voici la page d’aide d’installation de Gitea: <a
+href="https://docs.gitea.com/next/installation/install-from-binary">documentation
+installation Binary</a></p>
+<h3 data-number="4.3.2"
+id="création-du-fichbier-de-configuration-gitea"><span
+class="header-section-number">4.3.2</span> Création du fichbier de
+configuration Gitea</h3>
+<p>S’en est suivi la création du fichier de configuration de Gitea avec
+la commande.<br />
+- <code>nano /etc/gitea/app.ini</code> et nous avons mis ces lignes
+dans:</p>
+<ul>
+<li><code>DOMAIN = gitea.yourdomain.com --</code></li>
+</ul>
+<p>Définis le domaine sur lequel notre instance de Gitea va être
+accessible.<br />
+- <code>ROOT_URL = http://gitea.yourdomain.com/ --</code></p>
+<p>Enfin, il a fallu donner la propriété a l’utilisateur git. chown git.
+<code>/etc/gitea/app.ini</code></p>
+<p>L’installation de Gitea est maintenant terminée. Pour le lancer nous
+avons utilisé cette commande -
+<code>GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini.</code></p>
+<p>Le serveur se lance et il y a toutes ces informations qui
+s’affichent.</p>
+<p><a href=""><img src="./images/Terminal%20_serv_gitea.png"
+alt="L’image est introuvable" /></a></p>
+<p>Suite à cela nous avons pu lancer une première fois le service Gitea
+en collant le lien <code>http://localhost:300</code> sur Internet.Ce qui
+nous a amené à cette page où l’on a du configurer l’administrateur comme
+dans les consignes. Une fois fait, on est redirigé sur la page d’acceuil
+ci-dessous.</p>
+<p><a href=""><img src="./images/Gitea_acceuil.png"
+alt="L’image est introuvable" /></a></p>
+<p>Quelle version du binaire avez-vous installé ? Donnez la version et
+la commande permettant d’obtenir cette information.</p>
+<p>Pour vérifier la version du binaire installé, nous avons utilisé
+cette commande:</p>
+<ul>
+<li><code>/usr/local/bin/gitea --version</code></li>
+</ul>
+<p>Elle nous a bien renvoyée la version installée de Gitea qui était la
+1.21.7 sous la forme:</p>
+<p>Gitea version 1.21.7 built with GNU Make 4.3, go1.21.7 : bindata,
+sqlite, sqlite_unlock_notify.</p>
+<p>Comment faire pour mettre à jour le binaire de votre service sans
+devoir tout reconfigurer ? Essayez en mettant à jour vers la version
+1.22-dev.</p>
+<p>Pour mettre à jour sans devoir tout reconfigurer il a fallu installer
+le binaire souhaité, c’est à dire la version 1.22-dev. Avant de procéder
+à la mise à jour, nous avons du nous assurer que le fichier binaire
+était éxecutable avec la commande</p>
+<ul>
+<li><code>chmod +x /Télechargements/gitea</code></li>
+</ul>
+<p>Ensuite, nous avons arrêté le service Gitea avec le commande</p>
+<ul>
+<li><code>killall gitea</code></li>
+</ul>
+<p>renommé l’ancien Gitea en Gitea.old avec mv /usr/local/bin/gitea
+/usr/local/bin/gitea.old. Enfin nous avons déplacé le nouveau binaire mv
+/Telechargements/gitea /usr/local/bin/gitea. Puis on l’a éxecuté avecc
+la commande ./gitea.</p>
+<p>Enfin, nous avons crée notre premier projet Gitea comme suit.</p>
+<p>L’acceuil de ce projet se présente comme ceci.</p>
+<figure>
+<img src="./images/Acceuil_projet1.png" alt="L’image est introuvable" />
+<figcaption aria-hidden="true">L’image est introuvable</figcaption>
+</figure>
+<p>Lorsqu’on dépose des fichiers on peut créer des dossiers etc.</p>
+<figure>
+<img src="./images/Dépôt_rapports.png" alt="L’image est introuvable" />
+<figcaption aria-hidden="true">L’image est introuvable</figcaption>
+</figure>
+<h1 data-number="5" id="les-problème-rencontrés"><span
+class="header-section-number">5</span> Les problème rencontrés</h1>
+<p>Durant cette Saé, nous avons rencontré plusieurs problèmes plus ou
+moins problématiques.</p>
+<ul>
+<li><p>Au tout début de la Saé, au moment de l’installation des paquets
+pour notre machine virtuelle automatique nous nous étions trompé de
+fichier de pré configuration et nous avions mit l’installation des
+paquets dans le fichier config.sh, alors qu’il fallait les mettre dans
+le preseed-fr.cfg, ce qui nous a valu environ 30 minutes de recherche du
+problème afin de pourvoir le résoudre</p></li>
+<li><p>Ensuite avec le Markdown [^1], afin de pouvoir surligner le texte
+nous avons parcouru les sites d’apprentissage du markdown en ligne, car
+la seule balise que nous avions était <code>==texte==</code> mais elle
+ne fonctionnait pas à l’affichage et pas non plus dans le pdf ni l’html
+donc la seule solution que nous avons eu (si nous y arrivons) est
+d’utiliser une template afin de passer en fluo tous les textes dans ces
+balises</p></li>
+<li><p>Et pour finir avec Gitea qui nous a posé le plus de problème et
+qui nous à pris le plus de temps car nous n’arrivions pas à démarrer le
+site à cause du fait que le fichier <code>app.ini</code> n’existait tout
+simplement pas, nous avons donc créé ce fichier et entré les
+informations qu’il devait y avoir à l’intérieur à l’aide d’un <a
+href="https://gist.github.com/randyesq/a3d8afd8b926069eee56428e4d8ce099">github</a></p></li>
+</ul>
+<h1 data-number="6" id="conclusion"><span
+class="header-section-number">6</span> Conclusion</h1>
+<p>Pour conclure durant cette Saé nous avons vu:</p>
+<ul>
+<li><p>Comment installer et automatisé une machine virtuelle ? Pour
+ceci, nous avons modifié les fichiers de configuration qui servent de
+base pour la machine.</p></li>
+<li><p>Nous avons aussi vu l’utilisation de git, un logiciel permettant
+de stocker et d’échanger des fichiers/projets sur un cloud.</p></li>
+<li><p>L’utilisation d’application cliente telle que Gitea, git-gui,
+gitk fut aussi un des points importants de ce projet</p></li>
+</ul>
+</body>
+</html>
