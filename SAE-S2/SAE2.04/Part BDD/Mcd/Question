@@ -1,0 +1,29 @@
+1) Il y a 13 869 lignes (wc -l Données.csv) et faire -1 pour la ligne d'entête
+2) Chaque ligne correspond à une formation 
+3) Il y a 118 colonnes. (head -1 myfile.csv | sed 's/[^,]//g' | wc -c)
+4) La colonne UAI (3ème)
+5) La colonne J (filière de formation) 5e
+6) Il y a une seule ligne qui fait référence à notre BUT info. (tri uai 6990)
+7) La colonne qui identifie le département et la colonne F "Département (ou E)
+8) en utilisant une table import  
+9) Certaines lignes ont des colonnes null ce qui peut poser problème dans les futures tables.
+   Certaine colonne ont exactement le même nom
+Q2 :
+
+1) Pour faire correspondre les noms avec les numéros dans le dico nous avons d'abord sélectionne les noms des colonnes puis copié-collé dans dico, ensuite dans la ligne d'en dessous nous avons entré n1 , n2 puis nous avons glissé jusque-là fin des colonnes non-vides 
+
+5) a) select count(*) from import =13869
+5) b) select count(distinct n4) from import ; =3602
+5) c) select count(*) from import where n4 like '%Université de Lille%'; = 146
+5) d) select count(*) from import where n4 like '%Institut universitaire de technologie de Lille%'; =10
+
+Exo 2 :
+
+
+2)	a)
+	b) 1500 octets (proprieté du fichier import.sql)
+	c)
+	d)
+
+3)
+	
